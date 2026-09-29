@@ -1,24 +1,36 @@
 #include <iostream>
 
-// Homework 5 — Your Name
+// Homework 5 — Mason Ayala
 // CIS 5 Week 05 · Rule engine lite
 
 int main() {
-  int score = 0;
-  int attendance = 0;
+	int score = 0;
+	int attendance = 0;
+	std::cout << "Score? ";
+	std::cin >> score;
+	std::cout << "Attendance? ";
+	std::cin >> attendance;
+	bool closeScore = score >= 60 && score < 70;
+	bool attendanceWarning = score >= 70 && attendance < 80;
+	// Score warning edges: 59, 60, 61
+	// Score passing edges: 69, 70, 71
+	// Attendance edges: 79, 80, 81
+	if (score < 0 || score > 100 || attendance < 0 || attendance > 100) {
+		std::cout << "Result: invalid input\n";
+	}
+	else if (score >= 70 && attendance >= 80) {
+		std::cout << "Result: pass\n";
+	}
+	else if (closeScore || attendanceWarning) {
+		std::cout << "Result: warning\n";
+	}
+	else {
+		std::cout << "Result: fail\n";
+	}
+	// TODO: two comments that explain a choice (why invalid first, why && not ||, why >= not >)
+	// Invalid input comes first so out-of-range values do not enter the normal rules.
 
-  // TODO: cout question, then cin, for score and for attendance
+	// Passing uses && because both the score and attendance requirements must be met.
 
-  // Edge values: (list just-below / exactly-on / just-above for each threshold here)
-
-  // TODO: invalid branch FIRST — out-of-range input gets its own message
-  //   if (score < 0 || score > 100) { ... }
-
-  // TODO: else if ( ... && ... ) { ... }   best outcome
-  // TODO: else if ( ... ) { ... }          middle outcome
-  // TODO: else { ... }                     the rest
-
-  // TODO: two comments that explain a choice (why invalid first, why && not ||, why >= not >)
-
-  return 0;
+	return 0;
 }
